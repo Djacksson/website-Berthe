@@ -28,8 +28,12 @@ app.use(cors(
 
 //############################################################
 //############################################################
+const { connection } = require('./configs/config.connexion');
+
+//############################################################
+//############################################################
 // Appel des Routes
-app.use('/', (req, res) => { res.status(200).render("index") });
+app.use('/', (req, res) => { return res.status(200).render("index") });
 app.use((req, res) => { res.status(404).render("404") });
 
 
