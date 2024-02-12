@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(
     {
-        origin: ["http://localhost:3000",],
+        origin: ["http://localhost:3000", "http://localhost:8100", "http://localhost:4200"],
         default: "http://localhost:3000",
         credentials: true,
         optionSuccessStatus: 200,

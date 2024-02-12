@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start app/server.js",
-    "dev": "nodemon app/server.js",
+    "start": "pm2 start app/server-diallo.js",
+    "dev": "nodemon app/server-diallo.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
