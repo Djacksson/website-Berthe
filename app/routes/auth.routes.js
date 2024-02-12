@@ -9,21 +9,21 @@ const { verifyToken } = require('../middlewares/auth.middleware');
 
 // Route de connexion
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { id_personnel, password } = req.body;
 
-    Admin.getAdminByName(email, async (err, data) => {
+    Admin.getAdminByName(id_personnel, async (err, data) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
         else {
-            const checkPassword = await bcrypt.compareSync(password, data[0].password);
+            const checkPassword = await bcrypt.compareSync(password, data[0].pass);
 
             if (!checkPassword) {
                 return res.status(401).json({ message: 'Invalid credentials' });
             }
 
-            const token = jwt.sign({ userId: data[0].id, email: data[0].email }, process.env.SECRET_KEY);
+            const token = jwt.sign({ userId: data[0].N, id_personnel: data[0].id_personnel }, process.env.SECRET_KEY);
             res.status(200).json({ message: 'Login successful', access_token: token });
         }
     })
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
 
 
 router.get('/protected', verifyToken, async (req, res) => {
-    Admin.getAdminByName(req.admin.email, async (err, data) => {
+    Admin.getAdminByName(req.admin.id_personnel, async (err, data) => {
         if (err) {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
