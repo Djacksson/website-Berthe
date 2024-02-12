@@ -30,11 +30,13 @@ app.use(cors(
 //############################################################
 //Importation des routes
 const userRoute = require('./routes/user.routes');
+const authRoute = require('./routes/auth.routes');
 
 //############################################################
 //############################################################
 // Appel des Routes
 app.use('/user', userRoute);
+app.use('/auth', authRoute);
 
 app.use('/', (req, res) => { return res.status(200).render("index") });
 app.use((req, res) => { res.status(404).render("404") });
