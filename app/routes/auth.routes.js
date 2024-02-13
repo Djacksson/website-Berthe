@@ -20,6 +20,10 @@ router.post('/login', async (req, res) => {
         else {
             const hashedEnteredPassword = crypto.createHash('md5').update(password).digest('hex');
             const password_db = data[0].pass;
+
+            console.log("Input",hashedEnteredPassword);
+            console.log("Out",password_db);
+            
             // const checkPassword = await bcrypt.compareSync(password, data[0].pass);
             if (hashedEnteredPassword === password_db) {
                 // Les mots de passe correspondent
