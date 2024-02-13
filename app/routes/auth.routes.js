@@ -24,7 +24,6 @@ router.post('/login', async (req, res) => {
             console.log("Input",hashedEnteredPassword);
             console.log("Out",password_db);
             
-            // const checkPassword = await bcrypt.compareSync(password, data[0].pass);
             if (hashedEnteredPassword === password_db) {
                 // Les mots de passe correspondent
                 const token = jwt.sign({ userId: data[0].N, id_personnel: data[0].id_personnel }, process.env.SECRET_KEY);
@@ -33,6 +32,9 @@ router.post('/login', async (req, res) => {
                 // Les mots de passe ne correspondent pas
                 return res.status(401).json({ message: 'Invalid credentials' });
             }
+            
+            // const checkPassword = await bcrypt.compareSync(password, data[0].pass);
+
             // if (!checkPassword) {
             //     return res.status(401).json({ message: 'Invalid credentials' });
             // }
